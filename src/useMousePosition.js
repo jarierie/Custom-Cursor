@@ -8,6 +8,9 @@ const useMousePosition = () => {
       setPosition({ x: e.pageX, y: e.pageY });
     };
     window.addEventListener("mousemove", handlePosition);
+    return () => {
+      window.removeEventListener("mousemove", handlePosition);
+    };
   }, []);
 
   return { position };
