@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import giphy from "./assets/giphy.gif";
+import useMousePosition from "./useMousePosition";
 
 const CursorMain = styled(motion.div)`
   position: absolute;
@@ -16,23 +17,24 @@ const CursorMain = styled(motion.div)`
 `;
 
 const Cursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 });
-  useEffect(() => {
-    const handlePosition = (e) => {
-      setMousePosition({
-        x: e.pageX,
-        y: e.pageY,
-      });
-    };
-    window.addEventListener("mousemove", handlePosition);
-  }, []);
+  // const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 });
+  // useEffect(() => {
+  //   const handlePosition = (e) => {
+  //     setMousePosition({
+  //       x: e.pageX,
+  //       y: e.pageY,
+  //     });
+  //   };
+  //   window.addEventListener("mousemove", handlePosition);
+  // }, []);
 
+  const { position } = useMousePosition();
   return (
     <>
       <CursorMain
         animate={{
-          left: mousePosition.x,
-          top: mousePosition.y,
+          left: position.x,
+          top: position.y,
           scale: 0.5,
           opacity: 1,
         }}
